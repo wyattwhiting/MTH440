@@ -1,0 +1,232 @@
+\documentclass[12pt]{amsart}
+
+\usepackage{amsmath, amsthm, amssymb, amsfonts, fullpage, nopageno}
+
+\usepackage{graphicx}
+
+\usepackage{fancyvrb}
+
+\usepackage{skull}
+
+
+\setlength{\parindent}{0in}
+
+\def\CC{{\mathbb C}}
+\def\FF{{\mathbb F}}
+\def\QQ{{\mathbb Q}}
+\def\RR{{\mathbb R}}
+\def\ZZ{{\mathbb Z}}
+
+\def\Ecal{{\mathcal E}}
+\def\Fcal{{\mathcal F}}
+\def\Ocal{{\mathcal O}}
+
+\newcommand{\lsym}[2]{\ensuremath{\left(\frac{#1}{#2} \right)}}
+
+\begin{document}
+
+{\bf Winter 2021 MTH 440/540 Homework 5}
+
+{\bf Wyatt Whiting}
+
+\medskip
+
+{\bf Instructions.}  Due via Gradescope on Friday March 12.  Solutions must be typed.  
+
+\medskip
+
+{\bf 31.}   Let $p$ be an odd prime.  
+
+\begin{itemize}
+\item[{\bf (a)}] Prove that $-1$ is a quadratic residue mod $p$ if and only if $p\equiv1\pmod{4}$.
+
+\medskip
+
+Assume $-1$ is a quadratic residue mod $p$. Then there exists some minimum positive integer $a < p$ such that $a^2\equiv -1\pmod{p} \implies a^4\equiv 1\pmod{p}$, so then $a$ has order 4 mod $p$. Since $a$ is not divisible by $p$ by construction, then by Fermat's little theorem, we also have $a^{p-1}\equiv 1\pmod{p}$, and therefore $1\equiv a^{p-1} \equiv (a^2)^{(p-1)/2}\equiv (-1)^{(p-1)/2}$. We can then see that since $1 \equiv (-1)^{(p-1)/2}$, then $(p-1)/2$ must be even, implying $(p-1)$ is a multiple of 4, and therefore $p\equiv 1\pmod{4}$
+
+\smallskip
+
+Now assume $p \equiv 1\pmod{4}$. Let's choose some $a<p$ such that $a$ is a generator of $p$, so therefore $a$ has order $p-1$. By Fermat's little theorem, we have $a^{p-1}\equiv 1\pmod{p} \implies (a^{(p-1)/2})^2 \equiv 1\pmod{p}$. We then know that $a^{(p-1)/2}$ is either $-1$ or $1$. However, we chose $a$ to have order $p-1$, so it must be the case that $a^{(p-1)/2}\equiv -1$. We now assert that $-1$ is a square mod $p$ if and only if it is an even power of our generator $a$. We also know that all odd primes are either $1\pmod{4}$ or $3\pmod{4}$. For $\frac{p-1}{2}$ to be even, it can only be the case that $p\equiv 1\pmod{4}$.
+
+\smallskip
+
+We have shown both directions of implication, so we may conclude that $-1$ is a quadratic residue mod $p$ if and only if $p\equiv 1\pmod{p}$. $\skull$
+
+\item[{\bf (b)}] Assuming $p\geq5$, prove that $-3$ is a quadratic residue mod $p$ if and only if $p\equiv1\pmod{3}$.
+
+\medskip
+
+Assume $-3$ is a quadratic residue mod $p$. Then,
+
+\[\lsym{-3}{p} = 1 = \lsym{-1}{p}\lsym{3}{p}\implies \lsym{-1}{p}=\lsym{3}{p}. \]
+
+We now consider two cases: when $p\equiv 1\pmod{4}$ and $p\equiv 3\pmod{4}$.
+
+\bigskip
+
+Case $p\equiv 1\pmod{4}$: by part (a) we know $\lsym{-1}{p} = 1$ in this case, which gives us 
+
+\[\lsym{-1}{p}= 1 = \lsym{3}{p}. \]
+
+We can now apply quadratic reciprocity:
+
+\[\lsym{3}{p}\lsym{p}{3} = 1\cdot \lsym{p}{3} = (-1)^{\frac{p-1}{2}\cdot\frac{3-1}{2}} = 1, \]
+
+so we want $\lsym{p}{3} = 1$. We can quickly enumerate all quadratic residues mod 3 to find that $0^2 \equiv 0\pmod{p}, 1^2 \equiv 1\pmod{p}$, and $2^2 \equiv 4 \equiv 1\pmod{p}$, so in order for $\lsym{p}{3} = 1$, it must be the case that $p\equiv 1\pmod{3}$.
+
+\bigskip
+
+Case $p\equiv 3\pmod{4}$: by part (a), we know $\lsym{-1}{p} = -1$. So then
+
+\[ \lsym{-1}{p}= -1 = \lsym{3}{p}. \]
+
+Now applying quadratic reciprocity: 
+
+\[\lsym{3}{p}\lsym{p}{3} = -1 \cdot \lsym{p}{3} = (-1)^{\frac{p-1}{2}\cdot \frac{3-1}{2}}= -1 \implies -\lsym{p}{3}=-1\implies \lsym{p}{3}=1. \]
+
+With the same reasoning as the first case, we must have $p\equiv 1\pmod{3}$ for this condition to hold. 
+
+\medskip
+
+In both cases, we have shown that $\lsym{-3}{p} = 1\implies p\equiv 1\pmod{3}$.
+
+\bigskip
+
+Now assume $p\equiv 1\pmod{3}$. To demonstrate that $-3$ is a quadratic residue mod $p$, we will show 
+
+\[\lsym{-3}{p} = \lsym{-1}{p}\lsym{3}{p} = 1. \]
+
+As with the first part of this proof, we split this into two cases:
+
+\bigskip
+
+Case $p\equiv 1\pmod{4}$: we then have
+
+\[\lsym{-1}{p}\lsym{3}{p} = 1\cdot \lsym{3}{p} \implies \lsym{-3}{p} = \lsym{3}{p}.  \]
+
+Now applying quadratic reciprocity,
+
+\[\lsym{3}{p}\lsym{p}{3} = (-1)^{\frac{p-1}{2}\frac{3-1}{2}} = 1 \implies \lsym{3}{p} = \lsym{p}{3}. \]
+
+We know $p\equiv 1\pmod{3}$ by assumption and have shown in the previous section that $1$ is a quadratic residue mod $p$, giving us
+
+\[\lsym{p}{3} = 1 = \lsym{3}{p} \implies \lsym{-3}{p} = 1, \]
+
+so $-3$ is a quadratic residue mod $p$.
+
+\bigskip
+
+Case $p\equiv 3\pmod{4}$: in this case, we have 
+
+\[\lsym{-1}{p}\lsym{3}{p} = -1\cdot \lsym{3}{p} \implies \lsym{-3}{p} = -\lsym{3}{p}. \]
+
+Applying quadratic reciprocity,
+
+\[\lsym{3}{p}\lsym{p}{3} = (-1)^{\frac{p-1}{2}\frac{3-1}{2}} = -1\implies \lsym{3}{p} = -\lsym{p}{3}. \]
+
+We again know by the assumption $p\equiv 1\pmod{3}$ that $\lsym{p}{3} = 1$, and it then follows that
+
+\[\lsym{3}{p} = -(1) \implies \lsym{-3}{p} = -(-1) = 1,\]
+
+and therefore $-3$ is a quadratic residue mod $p$.
+
+\medskip
+
+With both these cases, we have now proven that if $p\equiv 1\pmod{3}$, then $-3$ is a quadratic residue mod $p$. Together with the previous proven implication, we have proven that $-3$ is a quadratic residue mod $p$ if and only if $p\equiv 1\pmod{3}$. $\skull$
+
+\end{itemize}
+
+\medskip
+
+{\bf 32.}   Write a program in Sage that inputs an odd prime $p$, and outputs a list 
+$$
+v=(v[0],v[1],\dots,v[n-1])
+$$ 
+of length $n=(p-1)/2$ whose entries are all of the quadratic residues $a$ modulo $p$ with $1\leq a<p$, in increasing order.  So for example, for an input of $p=7$, your program should output the list $v=(1,2,4)$.  You can use Sage's built in {\tt legendre\_symbol( , )} command.  Use your program to find the quadratic residues modulo $17$ and also modulo $53$.
+
+\medskip
+
+\begin{verbatim}
+def ResiduesModP(p):
+    v = []
+    for n in range(1, p):
+        v.append(mod(n,p)^2)
+    return list(set(v))
+
+print(ResiduesModP(17))
+print(ResiduesModP(53))
+> [1, 2, 4, 8, 9, 13, 15, 16]
+> [1, 4, 6, 7, 9, 10, 11, 13, 15, 16, 17, 24, 25, 28, 29, 36, 37, 38, 40, \\
+   42, 43, 44, 46, 47, 49, 52]
+\end{verbatim}
+
+\smallskip
+
+The quadratic residues of 17 and 53 are given in the above lists, respectively.
+
+\medskip
+
+{\bf 33.}   Write your own Sage function called {\tt DiscreteLog( , )}, which inputs an integer $a$ and a positive integer $n$, and returns the smallest positive integer $k$ such that $2^k\equiv a \pmod{n}$, if such $k$ exists.  If no such $k$ exists, return $0$.  Use your function to find $k$ such that $2^k\equiv 452 \pmod{1019}$.
+
+\medskip
+
+
+\begin{verbatim}
+def DiscreteLog(a, n):
+    k = 1
+    # loop until one of these conditions is met
+    while 1:
+        # if we have 2^n == a mod n, then k is the discrete log of a mod n
+        if mod(2,n)^k == mod(a, n): return k
+        # if it loops back, no log exists
+        if mod(2,n)^k == mod(a, n): return 0
+        k += 1
+DiscreteLog(452, 1019)
+> 632
+\end{verbatim}
+
+\smallskip
+
+We then have $2^{632}\equiv 452\pmod{1019}$.
+
+\medskip
+
+{\bf 34.}  Choose {\bf one} of the following algorithms to implement in Sage.  (I encourage you to do them all! But choose only one to turn in for credit.)  Write a general program and/or function and test it with at least two different choices of input data.
+
+\begin{itemize}
+\item[{\bf (a)}] {\bf Euclid's algorithm to find the gcd.}  Input: integers $a,b\in\ZZ$.  Output: $d=\gcd(a,b)$.
+
+\medskip
+
+I chose Euclid's GCD algorithm. This is made very simple with a recursive function:
+
+\begin{verbatim}
+def euclid_gcd(a, b):
+    if b == 0: return a
+    return euclid_gcd(b, mod(a, b))
+
+for a in range(1,11):
+    for b in range(1,11):
+        print(euclid_gcd(a,b),end="\t")
+    print("")
+
+\end{verbatim}
+
+And the output:
+
+\begin{verbatim}
+1	1	1	1	1	1	1	1	1	1	
+1	2	1	2	1	2	1	2	1	2	
+1	1	3	1	1	3	1	1	3	1	
+1	2	1	4	1	2	1	4	1	2	
+1	1	1	1	5	1	1	1	1	5	
+1	2	3	2	1	6	1	2	3	2	
+1	1	1	1	1	1	7	1	1	1	
+1	2	1	4	1	2	1	8	1	2	
+1	1	3	1	1	3	1	1	9	1	
+1	2	1	2	5	2	1	2	1	10	
+\end{verbatim}
+
+\end{itemize}
+
+\end{document}

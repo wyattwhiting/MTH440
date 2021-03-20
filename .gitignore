@@ -1,0 +1,5 @@
+# ignore .tex intermediates
+*.log
+*.synctex.gz
+*.aux
+*.dvi
